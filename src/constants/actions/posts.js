@@ -1,0 +1,3 @@
+export const API__GET_POSTS = 'API__GET_POSTS';
+export const API__GET_POSTS_SUCCESS = 'API__GET_POSTS_SUCCESS';
+export const API__GET_POSTS_FAIL = 'API__GET_POSTS_FAIL';
