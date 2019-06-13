@@ -1,9 +1,15 @@
 import { applyMiddleware, createStore } from 'redux';
-import apiMiddleware from '../middlewares/api';
 import rootReducer from '../reducers';
 
-const middlewares = [apiMiddleware];
+import sagaMiddleware from '../middlewares/saga';
+import watchFetchPost from '../sagas/posts';
+import watchSendComment from '../sagas/comments'
+
+const middlewares = [sagaMiddleware];
 
 const store = createStore(rootReducer, applyMiddleware(...middlewares));
+
+sagaMiddleware.run(watchFetchPost);
+sagaMiddleware.run(watchSendComment);
 
 export default store;

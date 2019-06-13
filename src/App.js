@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import { connect } from 'react-redux';
-import { apiGetPosts } from './actions/posts';
-import { apiSendComment } from './actions/comments';
+import { fetchPosts } from './actions/posts';
+import { postComment } from './actions/comments';
 import PostsComponent from './components/posts';
 import SendCommentComponent from './components/sendComment';
 
@@ -21,7 +21,7 @@ class App extends React.Component {
     const {commentText} = this.state;
     const  { sendComment, posts: {list} } = this.props;
     const lastPost = list[list.length - 1];
-    await sendComment(lastPost.id, {body: commentText})
+    await sendComment({postId: lastPost.id, body: commentText});
     this.setState({commentText: ''})
 
   }
@@ -51,8 +51,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  getPosts: apiGetPosts,
-  sendComment: apiSendComment,
+  getPosts: fetchPosts,
+  sendComment: postComment,
 };
 
 
