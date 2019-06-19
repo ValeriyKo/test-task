@@ -21,7 +21,12 @@ class App extends React.Component {
     const {commentText} = this.state;
     const  { sendComment, posts: {list} } = this.props;
     const lastPost = list[list.length - 1];
-    await sendComment({postId: lastPost.id, body: commentText});
+    await sendComment({postId: lastPost.id, body: JSON.stringify({
+        id: lastPost.id,
+        title: 'foo',
+        body: commentText,
+        userId: 1
+      })});
     this.setState({commentText: ''})
 
   }

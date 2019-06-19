@@ -12,7 +12,7 @@ function* sendCommentAsync({payload}) {
   try {
     yield put(sendComment());
     const data = yield call(() => {
-        return fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`, { method: "POST", body })
+        return fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`, { method: "PUT", body })
           .then(res => res.json())
       }
     );
