@@ -1,10 +1,12 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, take } from 'redux-saga/effects';
 
 import * as constants from '../constants/actions/comments'
 import { sendComment, sendCommentSuccess, sendCommentFail } from '../actions/comments';
 
 function* watchSendComment() {
-  yield takeLatest(constants.POST_COMMENT, sendCommentAsync);
+  const { payload } = yield take(constants.POST_COMMENT);
+  yield call(sendCommentAsync, payload);
+  // yield takeLatest(constants.POST_COMMENT, sendCommentAsync);
 }
 
 function* sendCommentAsync({postId, body}) {
